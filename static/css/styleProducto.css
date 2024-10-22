@@ -1,0 +1,110 @@
+#productos-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 60px;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.producto-header {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 12px;
+}
+
+.producto-title {
+    font-size: 1.5em;
+    margin: 0;
+    margin-right: 8px;
+}
+
+.producto-card {
+    width: 300px;
+    height: 400px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    margin-bottom: 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+.producto-image-container {
+    width: 100%;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+}
+
+.thumbnail-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #ddd;
+    transition: border-color 0.3s;
+}
+
+.thumbnail-image:hover {
+    border-color: #007bff;
+}
+
+.producto-stock {
+    font-size: 0.9em;
+    color: #888;
+    margin: 0;
+    margin-bottom: 4px;
+}
+
+.producto-owner {
+    font-size: 0.6em;
+    margin: 0;
+    margin-bottom: 0.2px;
+}
+
+.producto-price {
+    font-size: 1em;
+    margin-bottom: 0px;
+    margin: 0;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+    width: 100%;
+}
+
+.add-to-cart-btn,
+.eliminar-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.eliminar-btn {
+    background-color: #dc3545;
+}
+
+.eliminar-btn:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+}
+
+.eliminar-btn svg {
+    fill: white;
+}

@@ -1,0 +1,32 @@
+.navbar {
+    position: fixed; /* Fija la barra en la parte superior */
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #00a1e4; /* Fondo azul */
+    padding: 10px; /* Relleno */
+    display: flex; /* Flexbox para alinear los elementos */
+    justify-content: space-around; /* Espacio entre elementos */
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+}
+
+.navbar ul {
+    list-style: none; /* Elimina los puntos de lista */
+    padding: 0; /* Elimina el relleno */
+    margin: 0; /* Elimina el margen */
+    display: flex; /* Flexbox para alinear horizontalmente */
+}
+
+.navbar li {
+    margin: 0 10px; /* Espaciado entre los elementos de la lista */
+}
+
+.navbar a {
+    color: #fff; /* Color de texto blanco */
+    text-decoration: none; /* Elimina el subrayado */
+    font-weight: bold; /* Texto en negrita */
+}
+
+.navbar a:hover {
+    text-decoration: underline; /* Subrayado al pasar el ratón */
+}

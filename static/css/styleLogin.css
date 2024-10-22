@@ -1,0 +1,92 @@
+body {
+    font-family: Arial, sans-serif;
+    background: url('/static/images/fondo.jpg') no-repeat center center;
+    background-size: 90%;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    height: 100vh;
+    margin: 0;
+}
+
+.login-container {
+    position: relative;
+    z-index: 1;
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 400px;
+    margin: 100px;
+}
+
+.form-group {
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+label {
+    display: block;
+    margin-right: 10px;
+    color: #555;
+    font-size: 14px;
+    width: 80px;
+}
+
+input {
+    width: calc(100% - 90px);
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: #1877F2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+    background-color: #155CDA;
+}
+
+.links {
+    margin-top: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.github-btn {
+    background-color: #333;
+}
+
+.github-btn:hover {
+    background-color: #555;
+}
+
+.forgot-btn {
+    background-color: #1877F2;
+}
+
+.forgot-btn:hover {
+    background-color: #155CDA;
+}

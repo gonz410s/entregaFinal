@@ -1,0 +1,30 @@
+{"level":"info","message":"cargando config"}
+{"level":"info","message":"cargando config"}
+{"level":"info","message":"cargando config"}
+{"level":"info","message":"cargando config"}
+{"level":"info","message":"cargando config"}
+{"level":"info","message":"cargando config"}
+{"level":"info","message":"persistiendo usuarios en : mongodb"}
+{"level":"info","message":"perisistiendo carritos en :mongodb"}
+{"level":"info","message":"persistiendo productos en: mongodb"}
+{"level":"info","message":"persistiendo ticket en :mongodb"}
+{"level":"info","message":"Conectado a la base de datos en: \"mongodb+srv://UserCoder:YzyzdHbr8N94AFkK@cluster0.ixumopf.mongodb.net/clase26?retryWrites=true&w=majority&appName=Cluster0\""}
+{"level":"info","message":"Servidor escuchando peticiones en puerto: 8080"}
+{"level":"info","message":"persistiendo usuarios en : mongodb"}
+{"level":"info","message":"perisistiendo carritos en :mongodb"}
+{"level":"info","message":"persistiendo productos en: mongodb"}
+{"level":"info","message":"persistiendo ticket en :mongodb"}
+{"level":"info","message":"Conectado a la base de datos en: \"mongodb+srv://UserCoder:YzyzdHbr8N94AFkK@cluster0.ixumopf.mongodb.net/clase26?retryWrites=true&w=majority&appName=Cluster0\""}
+{"level":"info","message":"Servidor escuchando peticiones en puerto: 8080"}
+{"level":"info","message":"persistiendo usuarios en : mongodb"}
+{"level":"info","message":"perisistiendo carritos en :mongodb"}
+{"level":"info","message":"persistiendo productos en: mongodb"}
+{"level":"info","message":"persistiendo ticket en :mongodb"}
+{"level":"info","message":"Conectado a la base de datos en: \"mongodb+srv://UserCoder:YzyzdHbr8N94AFkK@cluster0.ixumopf.mongodb.net/clase26?retryWrites=true&w=majority&appName=Cluster0\""}
+{"level":"info","message":"Servidor escuchando peticiones en puerto: 8080"}
+{"level":"info","message":"persistiendo usuarios en : mongodb"}
+{"level":"info","message":"perisistiendo carritos en :mongodb"}
+{"level":"info","message":"persistiendo productos en: mongodb"}
+{"level":"info","message":"persistiendo ticket en :mongodb"}
+{"level":"info","message":"Conectado a la base de datos en: \"mongodb+srv://UserCoder:YzyzdHbr8N94AFkK@cluster0.ixumopf.mongodb.net/clase26?retryWrites=true&w=majority&appName=Cluster0\""}
+{"level":"info","message":"Servidor escuchando peticiones en puerto: 8080"}
