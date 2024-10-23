@@ -1,4 +1,3 @@
-
 import { carritoService } from '../services/carrito.service.js';
 import { CustomError } from '../utils/CustumErrors.js';
 import { TIPOS_ERROR } from '../utils/EError.js';
@@ -6,7 +5,7 @@ import { logger } from '../utils/logger.js';
 
 export async function postCartsController(req, res, next) {
     try {
-        const userId = req.params.userId;
+        const userId = req.user.id; // Obtener ID del usuario autenticado
         let carrito = await carritoService.findOne({ usuario: userId });
         res.setHeader('Content-Type', 'application/json');
         res.status(200).json({ carrito });
@@ -23,7 +22,6 @@ export async function postCartsController(req, res, next) {
 }
 
 export async function addProductCart(req, res, next) {
-    //añadimos producto al carrito
     const { cid: carritoId } = req.params;
     const producto = req.body;
 
@@ -57,7 +55,7 @@ export async function addProductCart(req, res, next) {
         res.setHeader('Content-Type', 'application/json');
         res.status(200).json({ carrito });
     } catch (error) {
-        req.logger.error(error.message);
+        logger.error(error.message);
         next(error);
     }
 }
@@ -65,13 +63,9 @@ export async function addProductCart(req, res, next) {
 export async function compraCarrito(req, res, next) {
     const carritoId = req.params.cid;
     const productos = req.body;
-    console.log(carritoId);
-    console.log(productos);
+
     try {
-        const amount = await carritoService.getQuantityStock(
-            carritoId,
-            productos
-        );
+        const amount = await carritoService.getQuantityStock(carritoId, productos);
 
         res.status(200).json({
             status: 'success',

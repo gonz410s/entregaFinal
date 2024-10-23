@@ -1,9 +1,9 @@
-
 import { getDaoUsuarios } from '../dao/usuarios/usuarios.dao.js';
 import { CustomError } from '../utils/CustumErrors.js';
 import { TIPOS_ERROR } from '../utils/EError.js';
 import { hasheadasSonIguales, hashear } from '../utils/criptografia.js';
 import { logger } from '../utils/logger.js';
+import { generateToken } from '../middlewares/autenticaciones.js'; // Importa la función para generar el token
 
 const usuariosDao = getDaoUsuarios();
 
@@ -30,6 +30,7 @@ class UsuariosService {
             throw error;
         }
     }
+    
     async findOneUserMongo(datos) {
         try {
             const usuarioMongo = await usuariosDao.findOneUserMongo(datos);
@@ -92,7 +93,9 @@ class UsuariosService {
                     rol: 'usuario',
                 };
             }
-            return datosUsuario;
+
+            const token = generateToken(datosUsuario); 
+            return { user: datosUsuario, token }; 
         } catch (error) {
             logger.error(`${error}`);
             throw error;
@@ -101,10 +104,7 @@ class UsuariosService {
 
     async findOneAndUpdate(datos) {
         try {
-            const usuarioActualizado = await usuariosDao.findOneAndUpdate(
-                datos
-            );
-
+            const usuarioActualizado = await usuariosDao.findOneAndUpdate(datos);
             return usuarioActualizado;
         } catch (error) {
             logger.error(`${error}`);
@@ -124,15 +124,10 @@ class UsuariosService {
         const passCript = hashear(data.password1);
 
         if (hasheadasSonIguales(data.password1, user.password)) {
-        
             return { error: true, code: 'PASSWORDS_ARE_SAME' };
         }
 
-        const userActualizado = await this.findByIdAndUpdate(
-            user._id,
-            passCript
-        );
-
+        const userActualizado = await this.findByIdAndUpdate(user._id, passCript);
         return data.password1;
     }
 

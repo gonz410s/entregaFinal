@@ -1,15 +1,16 @@
-
 import { Router } from 'express';
 import { soloLogueadosApi } from '../../middlewares/autorizaciones.js';
 import passport from 'passport';
+import { generateToken } from '../../middlewares/autenticaciones.js'; // Asegúrate de importar esta función
 
 export const sesionesRouter = Router();
 
-
-sesionesRouter.post('/',passport.authenticate('loginLocal', { failWithError: true,}),
-  
+sesionesRouter.post('/', 
+    passport.authenticate('loginLocal', { failWithError: true }),
     async (req, res, next) => {
-        res.status(201).json({ status: 'success', message: 'login success' });
+        
+        const token = generateToken(req.user); 
+        res.status(201).json({ status: 'success', message: 'login success', token, user: req.user });
     },
     (error, req, res, next) => {
         res.status(401).json({ status: 'error', message: error.message });

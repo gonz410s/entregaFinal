@@ -41,7 +41,6 @@ class ProductoService {
                 await productosDao.updateOne(idProduct, nuevoStock);
               
                 amount += product.price * quantityBuyProduct;
-                //eliminar producto del carrito
                 await carritoService.buscarIndiceDelProducto(idCarrito, id);
             }
         }

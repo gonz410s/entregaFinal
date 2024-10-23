@@ -40,12 +40,12 @@ app.use(middLogger);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Configuración de rutas
+
 app.use('/static', express.static('./static'));
 app.use('/', webRouter);
 app.use('/api', apiRouter);
 
-// Configuración de socket.io
+
 io.on('connection', (socket) => {
     logger.info('Nuevo usuario conectado: ' + socket.id);
 
@@ -61,13 +61,13 @@ io.on('connection', (socket) => {
 
 app.use(express.static(path.join(path.resolve(), 'static')));
 
-//Manejador de errores
+
 
 const specs = swaggerJSDoc(swaggerOptions)
 app.use('/apidocs', swaggerUiExpress.serve,swaggerUiExpress.setup(specs))
 
 app.use(errorHandler);
-// Iniciar el servidor
+
 server.listen(PORT, () => {
 
     logger.info(`Servidor escuchando peticiones en puerto: ${PORT}`);

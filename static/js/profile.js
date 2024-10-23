@@ -7,30 +7,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const overlay = document.getElementById('overlay');
     const spans = document.querySelectorAll('span');
 
-    // Inicialmente oculta la sección de perfil y el overlay
+
     profileInfo.style.display = 'none';
     overlay.style.display = 'none';
 
-    // Maneja el clic en el ícono para mostrar u ocultar la información del perfil
+    
     toggleButton.addEventListener('click', () => {
         if (profileInfo.classList.contains('open')) {
             profileInfo.classList.remove('open');
-            overlay.style.display = 'none'; // Oculta el overlay
+            overlay.style.display = 'none'; 
             setTimeout(() => {
                 profileInfo.style.display = 'none';
-            }, 500); // Coincide con la duración de la transición CSS
+            }, 500); 
             toggleButton.setAttribute('aria-expanded', 'false');
         } else {
             profileInfo.style.display = 'block';
-            overlay.style.display = 'block'; // Muestra el overlay
+            overlay.style.display = 'block'; 
             setTimeout(() => {
                 profileInfo.classList.add('open');
-            }, 0); // Sin retardo, asegura que display: block se aplique antes de la animación
+            }, 0); 
             toggleButton.setAttribute('aria-expanded', 'true');
         }
         toggleButton.textContent = profileInfo.classList.contains('open')
             ? '❌'
-            : '👤'; // Cambia el ícono
+            : '👤'; 
     });
 
     cartButton.addEventListener('click', () => {
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         cartButton.textContent = cartInfo.classList.contains('open')
             ? '❌'
-            : '🛒'; // Cambia el ícono
+            : '🛒';
     });
 
     async function loadProfile() {
@@ -270,6 +270,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
-    // Carga inicial del perfil
+
     loadProfile();
 });

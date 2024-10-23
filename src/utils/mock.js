@@ -1,7 +1,7 @@
 
 import { fakerES as faker } from '@faker-js/faker';
 
-// Función para generar un solo producto
+
 export const generateProduct = () => {
     return {
         _id: Math.random().toString(36).substring(2), 

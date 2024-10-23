@@ -4,7 +4,7 @@
 const formLogin = document.querySelector('form');
 
 formLogin?.addEventListener('submit', async (event) => {
-    event.preventDefault(); // evita la recarga de la pagina
+    event.preventDefault(); 
 
     const response = await fetch('/api/sesiones', {
         method: 'POST',
