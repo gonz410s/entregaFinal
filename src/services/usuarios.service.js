@@ -1,6 +1,6 @@
 
 import { getDaoUsuarios } from '../dao/usuarios/usuarios.dao.js';
-import { CustomError } from '../utils/CustumErrors.js';
+import { CustomError } from '../utils/CustomErrors.js';
 import { TIPOS_ERROR } from '../utils/EError.js';
 import { hasheadasSonIguales, hashear } from '../utils/criptografia.js';
 import { logger } from '../utils/logger.js';

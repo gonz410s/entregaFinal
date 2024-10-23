@@ -1,7 +1,7 @@
 
 import session from 'express-session';
 import connectMongo from 'connect-mongo';
-import { MONGODB_CNX_STR, SESSION_SECRET } from '../config.js';
+import { MONGODB_CNX_STR, JWT_SECRET } from '../config.js';
 
 const store = connectMongo.create({
     mongoUrl: MONGODB_CNX_STR,
@@ -10,7 +10,7 @@ const store = connectMongo.create({
 
 export const sesiones = session({
     store,
-    secret: SESSION_SECRET,
+    secret: JWT_SECRET,
     resave: false,
     saveUninitialized: false,
 });

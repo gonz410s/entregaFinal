@@ -1,6 +1,6 @@
 
 import { productoService } from '../services/productos.service.js';
-import { CustomError } from '../utils/CustumErrors.js';
+import { CustomError } from '../utils/CustomErrors.js';
 import { TIPOS_ERROR } from '../utils/EError.js';
 import { generateProducts } from '../utils/mock.js';
 

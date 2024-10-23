@@ -1,4 +1,4 @@
-
+// models/carrito.model.js
 import { Schema, model } from 'mongoose';
 
 export const cartsSchema = new Schema(
@@ -9,6 +9,7 @@ export const cartsSchema = new Schema(
         },
         usuario: {
             type: String,
+            required: true,
         },
         products: [
             {
@@ -41,3 +42,6 @@ export const cartsSchema = new Schema(
         _id: false,
     }
 );
+
+const carritoModel = model('carritos', cartsSchema);
+export default carritoModel;

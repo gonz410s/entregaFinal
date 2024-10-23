@@ -2,7 +2,7 @@
 import { transport } from '../config.js';
 import { usuariosService } from '../services/usuarios.service.js';
 import { hashear } from '../utils/criptografia.js';
-import { CustomError } from '../utils/CustumErrors.js';
+import { CustomError } from '../utils/CustomErrors.js';
 import { TIPOS_ERROR } from '../utils/EError.js';
 import { logger } from '../utils/logger.js';
 import bcrypt from 'bcrypt';

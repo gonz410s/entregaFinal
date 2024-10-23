@@ -1,7 +1,6 @@
-
 import { getDaoCarrito } from '../dao/carritos/carritos.dao.js';
 import { toPOJO } from '../dao/utils.js';
-import { CustomError } from '../utils/CustumErrors.js';
+import { CustomError } from '../utils/CustomErrors.js';
 import { TIPOS_ERROR } from '../utils/EError.js';
 import { productoService } from './productos.service.js';
 
@@ -9,72 +8,79 @@ const carritoDao = getDaoCarrito();
 
 class CarritoService {
     async create(criterio) {
-        return await carritoDao.createCart(criterio);
+        return await carritoDao.create(criterio);
     }
 
-    async findOne(usuarioId) {
+    async findOne(userId) {
         try {
-            let carrito = await carritoDao.findCart(usuarioId);
+            if (!userId || typeof userId !== 'string') {
+                throw CustomError.createError(
+                    'InvalidUserId',
+                    null,
+                    'El ID de usuario no es válido o no se recibió correctamente.',
+                    TIPOS_ERROR.ARGUMENTOS_INVALIDOS
+                );
+            }
 
+            let carrito = await carritoDao.findCart(userId);
             if (!carrito) {
                 carrito = await carritoDao.create({
-                    usuario: usuarioId.usuario,
+                    usuario: userId,
                     products: [],
                 });
             }
             return carrito;
         } catch (error) {
-            if (error instanceof CustomError) {
-                throw error; // Re-lanzar errores personalizados para ser manejados por los controladores o middleware
-            } else {
-                // Manejar otros errores no previstos
-                throw CustomError.createError(
-                    'ErrorInterno',
-                    error,
-                    'Ocurrió un error interno del servidor al buscar o crear el carrito.',
-                    TIPOS_ERROR.INTENRAL_SERVER_ERROR
-                );
-            }
+            console.error('Error in findOne:', error);
+            throw CustomError.createError(
+                'ErrorInterno',
+                error,
+                'Ocurrió un error interno del servidor al buscar o crear el carrito.',
+                TIPOS_ERROR.INTERNAL_SERVER_ERROR
+            );
         }
     }
 
     async findByIdCart(id) {
-        const carrito = await carritoDao.findByIdCart(id);
-
-        return carrito;
+        return await carritoDao.findByIdCart(id);
     }
 
     async addProductCart(carrito, productoAdd) {
+        const { producto } = productoAdd;
+        if (!producto || !producto['_id'] || !producto['title'] || !producto['price'] || !producto['description']) {
+            throw CustomError.createError(
+                'Invalid Product Data',
+                null,
+                'The product data is incomplete or invalid',
+                TIPOS_ERROR.ARGUMENTOS_INVALIDOS
+            );
+        }
+
         const productoExistente = carrito.products.find(
-            (itemProducto) =>
-                itemProducto.idProduct == productoAdd.producto['_id']
+            (itemProducto) => itemProducto.idProduct == producto['_id']
         );
-        console.log('producto',     productoAdd);
 
         if (productoExistente) {
             productoExistente.quantity += 1;
         } else {
             const aux = {
-                idProduct: productoAdd.producto['_id'],
-                title: productoAdd.producto['title'],
-                price: productoAdd.producto['price'],
-                description: productoAdd.producto['description'],
+                idProduct: producto['_id'],
+                title: producto['title'],
+                price: producto['price'],
+                description: producto['description'],
+                quantity: 1,
             };
             carrito.products.push(aux);
         }
+
+        await carrito.save();
     }
 
     async getQuantityStock(idCarrito, productosCarritos) {
-        //trae los productos
-        const compararStockCompra = await productoService.compareStock(
-            idCarrito,
-            productosCarritos
-        );
-        return compararStockCompra;
+        return await productoService.compareStock(idCarrito, productosCarritos);
     }
 
     async deleteProduct(carrito, idProduct) {
-        //del carrito eliminamos el productoid
         const productIndex = carrito.products.findIndex(
             (product) => product.idProduct === idProduct
         );
@@ -88,7 +94,6 @@ class CarritoService {
 
     async buscarIndiceDelProducto(Idcarrito, productoId) {
         const carrito = await this.findByIdCart(Idcarrito);
-
         const productoIndex = carrito.products.findIndex(
             (item) => item.idProduct === productoId
         );

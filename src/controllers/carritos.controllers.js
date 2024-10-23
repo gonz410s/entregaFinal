@@ -1,26 +1,32 @@
 
 import { carritoService } from '../services/carrito.service.js';
-import { CustomError } from '../utils/CustumErrors.js';
+import { CustomError } from '../utils/CustomErrors.js';
 import { TIPOS_ERROR } from '../utils/EError.js';
 import { logger } from '../utils/logger.js';
 
 export async function postCartsController(req, res, next) {
     try {
         const userId = req.params.userId;
-        let carrito = await carritoService.findOne({ usuario: userId });
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json({ carrito });
-    } catch (error) {
-        if (error instanceof CustomError) {
-            res.status(error.code).json({ error: error.message });
-        } else {
-            res.status(TIPOS_ERROR.INTENRAL_SERVER_ERROR).json({
-                error: 'Error interno del servidor',
-            });
+
+        // Verifica que userId esté definido y sea un string
+        if (!userId || typeof userId !== 'string') {
+            return res.status(400).json({ error: 'Usuario no válido o no definido' });
         }
-        next(error);
+
+        let carrito = await carritoService.findOne(userId);
+        console.log('Carrito:', carrito);
+        res.setHeader('Content-Type', 'application/json');
+        return res.status(200).json({ carrito });
+    } catch (error) {
+        console.error('Error en postCartsController:', error);
+
+        // Respuesta de error en caso de excepción
+        return res.status(500).json({
+            error: 'Ocurrió un error interno al buscar o crear el carrito.',
+        });
     }
 }
+
 
 export async function addProductCart(req, res, next) {
     //añadimos producto al carrito

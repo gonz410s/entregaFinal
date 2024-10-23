@@ -20,7 +20,7 @@ import { logger, middLogger } from './utils/logger.js';
 
 logger;
 
-// Conexión a la base de datos
+
 await mongoose.connect(MONGODB_CNX_STR);
 logger.info(`Conectado a la base de datos en: "${MONGODB_CNX_STR}"`);
 
@@ -66,8 +66,7 @@ app.use(express.static(path.join(path.resolve(), 'static')));
 const specs = swaggerJSDoc(swaggerOptions)
 app.use('/apidocs', swaggerUiExpress.serve,swaggerUiExpress.setup(specs))
 
-app.use(errorHandler);
-// Iniciar el servidor
+
 server.listen(PORT, () => {
 
     logger.info(`Servidor escuchando peticiones en puerto: ${PORT}`);
@@ -84,4 +83,5 @@ app.get('/loggerTest', (req, res) => {
     res.send('prueba de logs.');
 });
 
-
+app.use(errorHandler);
+// Iniciar el servidor
