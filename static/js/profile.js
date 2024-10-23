@@ -225,7 +225,34 @@ function createTotalElement(amount) {
 
 function setupPurchaseButton(cartId, products, mail) {
     document.getElementById('buyButton').addEventListener('click', async () => {
-        // Same purchase logic as before
+        try {
+            // Crear el cuerpo de la solicitud para la API
+            const purchaseData = {
+                cartId: cartId,
+                products: products, // Lista de productos del carrito
+                purchaser: mail, // Correo del comprador
+            };
+
+            // Hacer la solicitud a la API para comprar
+            const response = await fetch('/api/cart/purchase', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(purchaseData),
+            });
+
+            if (!response.ok) {
+                throw new Error('Error en la compra: ' + response.statusText);
+            }
+
+            const result = await response.json();
+            alert('Compra realizada con éxito. Ticket: ' + result.ticket.code);
+            // Opcional: redirigir al usuario a una página de confirmación o detalles de la compra
+        } catch (error) {
+            console.error('Error al procesar la compra:', error);
+            alert('Hubo un problema al realizar la compra. Por favor, intenta de nuevo.');
+        }
     });
 }
 
