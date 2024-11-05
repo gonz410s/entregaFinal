@@ -36,6 +36,6 @@
         "swagger": "^0.7.5",
         "swagger-jsdoc": "^6.2.8",
         "swagger-ui-express": "^5.0.1",
-        "winston": "^3.13.0"
+        "winston": "^3.16.0"
     }
 }
